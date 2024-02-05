@@ -15,6 +15,7 @@
   "default_currency",
   "country",
   "is_group",
+  "status",
   "default_holiday_list",
   "cb0",
   "default_letter_head",
@@ -694,6 +695,13 @@
    "label": "Default Provisional Account",
    "no_copy": 1,
    "options": "Account"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
+   "options": "Active\nCancelled"
   }
  ],
  "icon": "fa fa-building",
@@ -701,7 +709,7 @@
  "image_field": "company_logo",
  "is_tree": 1,
  "links": [],
- "modified": "2022-08-16 16:09:02.327724",
+ "modified": "2023-12-29 18:24:24.781986",
  "modified_by": "Administrator",
  "module": "Setup",
  "name": "Company",

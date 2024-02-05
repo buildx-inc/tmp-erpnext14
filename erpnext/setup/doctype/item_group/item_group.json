@@ -13,6 +13,7 @@
   "item_group_name",
   "parent_item_group",
   "is_group",
+  "showpos",
   "image",
   "column_break_5",
   "defaults",
@@ -46,6 +47,7 @@
    "fieldname": "item_group_name",
    "fieldtype": "Data",
    "in_list_view": 1,
+   "in_preview": 1,
    "label": "Item Group Name",
    "oldfieldname": "item_group_name",
    "oldfieldtype": "Data",
@@ -58,6 +60,7 @@
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
    "in_list_view": 1,
+   "in_preview": 1,
    "label": "Parent Item Group",
    "oldfieldname": "parent_item_group",
    "oldfieldtype": "Link",
@@ -70,6 +73,7 @@
    "fieldname": "is_group",
    "fieldtype": "Check",
    "in_list_view": 1,
+   "in_preview": 1,
    "label": "Is Group",
    "oldfieldname": "is_group",
    "oldfieldtype": "Select"
@@ -225,6 +229,12 @@
    "fieldname": "include_descendants",
    "fieldtype": "Check",
    "label": "Include Descendants"
+  },
+  {
+   "default": "0",
+   "fieldname": "showpos",
+   "fieldtype": "Check",
+   "label": "Show POS"
   }
  ],
  "icon": "fa fa-sitemap",
@@ -233,7 +243,7 @@
  "is_tree": 1,
  "links": [],
  "max_attachments": 3,
- "modified": "2023-01-05 12:21:30.458628",
+ "modified": "2023-11-19 18:32:46.456378",
  "modified_by": "Administrator",
  "module": "Setup",
  "name": "Item Group",

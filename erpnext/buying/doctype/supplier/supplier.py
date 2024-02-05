@@ -107,12 +107,12 @@ class Supplier(TransactionBase):
 	def create_primary_contact(self):
 		from erpnext.selling.doctype.customer.customer import make_contact
 
-		if not self.supplier_primary_contact:
-			if self.mobile_no or self.email_id:
-				contact = make_contact(self)
-				self.db_set("supplier_primary_contact", contact.name)
-				self.db_set("mobile_no", self.mobile_no)
-				self.db_set("email_id", self.email_id)
+		# if not self.supplier_primary_contact:
+		# 	if self.mobile_no or self.email_id:
+		# 		contact = make_contact(self)
+		# 		self.db_set("supplier_primary_contact", contact.name)
+		# 		self.db_set("mobile_no", self.mobile_no)
+		# 		self.db_set("email_id", self.email_id)
 
 	def create_primary_address(self):
 		from frappe.contacts.doctype.address.address import get_address_display

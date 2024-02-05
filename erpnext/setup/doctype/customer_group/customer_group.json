@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "alias": "Client Group",
  "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:customer_group_name",
@@ -139,7 +140,7 @@
  "idx": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2022-12-24 11:15:17.142746",
+ "modified": "2023-11-18 12:09:22.406141",
  "modified_by": "Administrator",
  "module": "Setup",
  "name": "Customer Group",

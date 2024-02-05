@@ -203,6 +203,7 @@
   {
    "fieldname": "currency",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Currency",
    "oldfieldname": "currency",
    "oldfieldtype": "Select",
@@ -212,6 +213,7 @@
   {
    "fieldname": "write_off_account",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Write Off Account",
    "options": "Account",
    "reqd": 1
@@ -296,6 +298,7 @@
    "depends_on": "update_stock",
    "fieldname": "warehouse",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Warehouse",
    "oldfieldname": "warehouse",
    "oldfieldtype": "Link",
@@ -402,7 +405,7 @@
    "link_fieldname": "pos_profile"
   }
  ],
- "modified": "2022-08-10 12:57:06.241439",
+ "modified": "2023-08-23 13:16:21.680411",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "POS Profile",

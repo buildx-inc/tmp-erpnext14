@@ -14,6 +14,7 @@
   "naming_series",
   "salutation",
   "customer_name",
+  "phone",
   "customer_type",
   "customer_group",
   "column_break0",
@@ -44,11 +45,17 @@
   "dashboard_tab",
   "contact_and_address_tab",
   "address_contacts",
+  "customer_primary_contact",
+  "contact_mobile",
+  "email",
+  "address_section",
+  "address_line1",
+  "city",
+  "country",
   "address_html",
   "column_break1",
   "contact_html",
   "primary_address_and_contact_detail",
-  "customer_primary_contact",
   "mobile_no",
   "email_id",
   "column_break_26",
@@ -106,16 +113,22 @@
    "options": "Salutation"
   },
   {
+   "alias": "Client Name",
    "bold": 1,
    "fieldname": "customer_name",
    "fieldtype": "Data",
+   "in_edit": 1,
    "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_view": 1,
    "label": "Customer Name",
    "no_copy": 1,
    "oldfieldname": "customer_name",
    "oldfieldtype": "Data",
    "reqd": 1,
-   "search_index": 1
+   "search_index": 1,
+   "validation": "{ \"required\": \"true\" }"
   },
   {
    "depends_on": "eval:doc.customer_type != 'Company'",
@@ -170,10 +183,15 @@
    "options": "User"
   },
   {
+   "alias": "Client Group",
+   "default": "Commercial",
    "fieldname": "customer_group",
    "fieldtype": "Link",
+   "in_edit": 1,
    "in_list_view": 1,
+   "in_preview": 1,
    "in_standard_filter": 1,
+   "in_view": 1,
    "label": "Customer Group",
    "oldfieldname": "customer_group",
    "oldfieldtype": "Link",
@@ -182,10 +200,14 @@
    "search_index": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "territory",
    "fieldtype": "Link",
+   "in_edit": 1,
    "in_list_view": 1,
+   "in_preview": 1,
    "in_standard_filter": 1,
+   "in_view": 1,
    "label": "Territory",
    "oldfieldname": "territory",
    "oldfieldtype": "Link",
@@ -261,8 +283,9 @@
    "depends_on": "eval:!doc.__islocal",
    "fieldname": "address_contacts",
    "fieldtype": "Section Break",
-   "label": "Address and Contact",
-   "options": "fa fa-map-marker"
+   "in_preview": 1,
+   "label": "Primary Contact",
+   "options": "user-alt"
   },
   {
    "depends_on": "eval: !doc.__islocal",
@@ -274,6 +297,9 @@
   {
    "fieldname": "website",
    "fieldtype": "Data",
+   "in_edit": 1,
+   "in_preview": 1,
+   "in_view": 1,
    "label": "Website"
   },
   {
@@ -296,10 +322,15 @@
    "label": "Primary Address and Contact"
   },
   {
+   "allow_in_quick_entry": 1,
    "description": "Reselect, if the chosen contact is edited after save",
    "fieldname": "customer_primary_contact",
    "fieldtype": "Link",
-   "label": "Customer Primary Contact",
+   "in_edit": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_view": 1,
+   "label": "Contact",
    "options": "Contact"
   },
   {
@@ -555,6 +586,60 @@
   {
    "fieldname": "column_break_54",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "in_edit": 1,
+   "in_preview": 1,
+   "in_view": 1,
+   "label": "Phone",
+   "options": "Phone",
+   "validation": "\"phone\""
+  },
+  {
+   "fieldname": "address_section",
+   "fieldtype": "Section Break",
+   "in_preview": 1,
+   "label": "Company Address",
+   "options": "map-pin"
+  },
+  {
+   "fieldname": "address_line1",
+   "fieldtype": "Data",
+   "in_edit": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_view": 1,
+   "label": "Address"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "in_edit": 1,
+   "in_preview": 1,
+   "label": "City"
+  },
+  {
+   "default": "Palestine",
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "in_edit": 1,
+   "in_preview": 1,
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "contact_mobile",
+   "fieldtype": "Read Only",
+   "in_view": 1,
+   "label": "Mobile No"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Read Only",
+   "in_view": 1,
+   "label": "Email Address"
   }
  ],
  "icon": "fa fa-user",
@@ -568,7 +653,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2022-11-08 15:52:34.462657",
+ "modified": "2023-12-07 12:53:41.785922",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",

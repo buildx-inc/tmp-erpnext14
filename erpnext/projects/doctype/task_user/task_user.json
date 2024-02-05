@@ -1,40 +1,35 @@
 {
  "actions": [],
- "creation": "2016-03-25 02:52:19.283003",
+ "creation": "2023-11-20 19:50:54.423725",
+ "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "user",
-  "role_profile_name",
   "email",
   "image",
   "column_break_2",
   "full_name",
   "welcome_email_sent",
-  "view_attachments",
-  "section_break_5",
-  "project_status"
+  "view_attachments"
  ],
  "fields": [
   {
    "fieldname": "user",
    "fieldtype": "Link",
-   "filters": "[]",
    "in_edit": 1,
    "in_list_view": 1,
    "label": "User",
    "options": "User",
    "reqd": 1,
-   "search_index": 1,
-   "validation": "{ \"required\": \"true\" }"
+   "search_index": 1
   },
   {
    "fetch_from": "user.email",
    "fieldname": "email",
    "fieldtype": "Read Only",
-   "label": "Email",
-   "read_only": 1
+   "label": "Email"
   },
   {
    "fetch_from": "user.user_image",
@@ -49,11 +44,9 @@
    "fieldtype": "Column Break"
   },
   {
-   "alias": "User",
    "fetch_from": "user.full_name",
    "fieldname": "full_name",
    "fieldtype": "Read Only",
-   "in_compact_list": 1,
    "in_list_view": 1,
    "label": "Full Name"
   },
@@ -68,35 +61,15 @@
    "default": "0",
    "fieldname": "view_attachments",
    "fieldtype": "Check",
-   "in_edit": 1,
-   "in_list_view": 1,
    "label": "View attachments"
-  },
-  {
-   "fieldname": "section_break_5",
-   "fieldtype": "Section Break"
-  },
-  {
-   "depends_on": "eval:parent.doctype == 'Project Update'",
-   "fieldname": "project_status",
-   "fieldtype": "Text",
-   "in_edit": 1,
-   "label": "Project Status"
-  },
-  {
-   "fieldname": "role_profile_name",
-   "fieldtype": "Read Only",
-   "in_list_view": 1,
-   "label": "User Role",
-   "read_only": 1
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2023-12-02 22:40:45.056392",
+ "modified": "2023-12-27 22:58:34.794885",
  "modified_by": "Administrator",
  "module": "Projects",
- "name": "Project User",
+ "name": "Task User",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "alias": "Company",
  "allow_events_in_timeline": 1,
  "allow_import": 1,
  "allow_rename": 1,
@@ -12,10 +13,12 @@
  "field_order": [
   "naming_series",
   "supplier_name",
-  "country",
   "column_break0",
   "supplier_group",
+  "mobile_no",
+  "status",
   "supplier_type",
+  "company",
   "is_transporter",
   "image",
   "defaults_section",
@@ -32,7 +35,6 @@
   "column_break2",
   "supplier_details",
   "column_break_30",
-  "website",
   "language",
   "dashboard_tab",
   "tax_tab",
@@ -41,17 +43,23 @@
   "tax_category",
   "tax_withholding_category",
   "contact_and_address_tab",
-  "address_contacts",
+  "website",
   "address_html",
   "column_break1",
   "contact_html",
   "primary_address_and_contact_detail_section",
   "supplier_primary_contact",
-  "mobile_no",
-  "email_id",
+  "contact_mobile",
+  "email",
+  "company_name",
   "column_break_44",
+  "address_contacts",
   "supplier_primary_address",
+  "address_title",
   "primary_address",
+  "address_line1",
+  "city",
+  "country",
   "accounting_tab",
   "accounts",
   "settings_tab",
@@ -85,16 +93,25 @@
    "bold": 1,
    "fieldname": "supplier_name",
    "fieldtype": "Data",
+   "in_edit": 1,
    "in_global_search": 1,
-   "label": "Supplier Name",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_view": 1,
+   "label": "Company Name",
    "no_copy": 1,
    "oldfieldname": "supplier_name",
    "oldfieldtype": "Data",
-   "reqd": 1
+   "reqd": 1,
+   "validation": "{\"required\":\"true\"}"
   },
   {
+   "conditional_default": "{\n    \"{currentUser.company}\":{\n        \"Asbab\": \"Palestine\",\n        \"CME\": \"United Arab Emirates\",\n        \"Next Era\" : \"United Arab Emirates\"\n    }\n}",
+   "default": "Palestine",
    "fieldname": "country",
    "fieldtype": "Link",
+   "in_edit": 1,
+   "in_preview": 1,
    "label": "Country",
    "options": "Country"
   },
@@ -157,20 +174,24 @@
   {
    "fieldname": "supplier_group",
    "fieldtype": "Link",
+   "in_edit": 1,
    "in_list_view": 1,
+   "in_preview": 1,
    "in_standard_filter": 1,
-   "label": "Supplier Group",
+   "in_view": 1,
+   "label": "Company Group",
    "oldfieldname": "supplier_type",
    "oldfieldtype": "Link",
    "options": "Supplier Group",
-   "reqd": 1
+   "reqd": 1,
+   "validation": "{\"required\":\"true\"}"
   },
   {
    "default": "Company",
    "fieldname": "supplier_type",
    "fieldtype": "Select",
    "label": "Supplier Type",
-   "options": "Company\nIndividual",
+   "options": "Company\nClient",
    "reqd": 1
   },
   {
@@ -274,9 +295,10 @@
    "depends_on": "eval:!doc.__islocal",
    "fieldname": "address_contacts",
    "fieldtype": "Section Break",
-   "label": "Address and Contacts",
+   "in_preview": 1,
+   "label": "Company Address",
    "oldfieldtype": "Column Break",
-   "options": "fa fa-map-marker"
+   "options": "map-pin"
   },
   {
    "fieldname": "address_html",
@@ -313,6 +335,9 @@
   {
    "fieldname": "website",
    "fieldtype": "Data",
+   "in_edit": 1,
+   "in_preview": 1,
+   "in_view": 1,
    "label": "Website",
    "oldfieldname": "website",
    "oldfieldtype": "Data"
@@ -350,26 +375,22 @@
   {
    "fieldname": "primary_address_and_contact_detail_section",
    "fieldtype": "Section Break",
-   "label": "Primary Address and Contact"
+   "in_preview": 1,
+   "label": "Primary Contact",
+   "options": "user-alt"
   },
   {
+   "allow_in_quick_entry": 1,
    "description": "Reselect, if the chosen contact is edited after save",
    "fieldname": "supplier_primary_contact",
    "fieldtype": "Link",
-   "label": "Supplier Primary Contact",
-   "options": "Contact"
-  },
-  {
-   "fetch_from": "supplier_primary_contact.mobile_no",
-   "fieldname": "mobile_no",
-   "fieldtype": "Read Only",
-   "label": "Mobile No"
-  },
-  {
-   "fetch_from": "supplier_primary_contact.email_id",
-   "fieldname": "email_id",
-   "fieldtype": "Read Only",
-   "label": "Email Id"
+   "in_edit": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_view": 1,
+   "label": "Contact",
+   "options": "Contact",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_44",
@@ -385,7 +406,7 @@
    "description": "Reselect, if the chosen address is edited after save",
    "fieldname": "supplier_primary_address",
    "fieldtype": "Link",
-   "label": "Supplier Primary Address",
+   "label": "Address",
    "options": "Address"
   },
   {
@@ -445,6 +466,77 @@
   {
    "fieldname": "column_break_59",
    "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "supplier_primary_contact.company_name",
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "supplier_primary_address.address_line1",
+   "fieldname": "address_line1",
+   "fieldtype": "Data",
+   "in_edit": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_view": 1,
+   "label": "Address"
+  },
+  {
+   "default": "tmp",
+   "fetch_from": "supplier_primary_address.city",
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fetch_from": "supplier_primary_address.address_title",
+   "fieldname": "address_title",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fetch_from": "supplier_primary_contact.email",
+   "fieldname": "email",
+   "fieldtype": "Read Only",
+   "in_view": 1,
+   "label": "Email Address"
+  },
+  {
+   "fetch_from": "supplier_primary_contact.contact_mobile",
+   "fieldname": "contact_mobile",
+   "fieldtype": "Read Only",
+   "in_view": 1,
+   "label": "Mobile No"
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "in_edit": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_view": 1,
+   "label": "Phone",
+   "options": "Phone",
+   "validation": "\"phone\""
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_edit": 1,
+   "in_standard_filter": 1,
+   "in_view": 1,
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nCancelled"
   }
  ],
  "icon": "fa fa-user",
@@ -457,7 +549,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2022-11-09 18:02:59.075203",
+ "modified": "2023-12-29 17:48:50.021512",
  "modified_by": "Administrator",
  "module": "Buying",
  "name": "Supplier",

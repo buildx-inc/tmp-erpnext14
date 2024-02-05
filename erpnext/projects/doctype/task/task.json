@@ -5,8 +5,10 @@
  "creation": "2013-01-29 19:25:50",
  "doctype": "DocType",
  "document_type": "Setup",
+ "enable_drive": 1,
  "engine": "InnoDB",
  "field_order": [
+  "details",
   "subject",
   "project",
   "issue",
@@ -30,8 +32,12 @@
   "progress",
   "duration",
   "is_milestone",
+  "users_section",
+  "users",
   "sb_details",
+  "details_heading",
   "description",
+  "notes",
   "sb_depends_on",
   "depends_on",
   "depends_on_tasks",
@@ -56,10 +62,16 @@
  ],
  "fields": [
   {
+   "calendar_title": 1,
    "fieldname": "subject",
    "fieldtype": "Data",
+   "in_edit": 1,
    "in_global_search": 1,
-   "in_standard_filter": 1,
+   "in_list_compact": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_view": 1,
+   "kanban_title": 1,
    "label": "Subject",
    "reqd": 1,
    "search_index": 1
@@ -68,12 +80,18 @@
    "bold": 1,
    "fieldname": "project",
    "fieldtype": "Link",
+   "in_edit": 1,
    "in_global_search": 1,
+   "in_list_compact": 1,
    "in_list_view": 1,
    "in_standard_filter": 1,
+   "in_view": 1,
+   "kanban_category": 1,
+   "kanban_group": 1,
    "label": "Project",
    "oldfieldname": "project",
    "oldfieldtype": "Link",
+   "option_label": "project_name",
    "options": "Project",
    "remember_last_selected_value": 1,
    "search_index": 1
@@ -95,7 +113,6 @@
    "default": "0",
    "fieldname": "is_group",
    "fieldtype": "Check",
-   "in_list_view": 1,
    "label": "Is Group"
   },
   {
@@ -107,10 +124,19 @@
   },
   {
    "bold": 1,
+   "calendar_color": 1,
+   "default": "Open",
+   "description": "Open:primary\nWorking:success\nPending Review:info\nOverdue:warning\nTemplate:pink\nCompleted:success-dim\nCancelled:danger",
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_edit": 1,
+   "in_list_compact": 1,
    "in_list_view": 1,
+   "in_preview": 1,
    "in_standard_filter": 1,
+   "in_view": 1,
+   "kanban_group": 1,
+   "kanban_tags": 1,
    "label": "Status",
    "no_copy": 1,
    "oldfieldname": "status",
@@ -118,10 +144,17 @@
    "options": "Open\nWorking\nPending Review\nOverdue\nTemplate\nCompleted\nCancelled"
   },
   {
+   "description": "Low:danger\nMedium:dark\nHigh:success",
    "fieldname": "priority",
    "fieldtype": "Select",
+   "in_edit": 1,
+   "in_list_compact": 1,
    "in_list_view": 1,
+   "in_preview": 1,
    "in_standard_filter": 1,
+   "in_view": 1,
+   "kanban_group": 1,
+   "kanban_tags": 1,
    "label": "Priority",
    "oldfieldname": "priority",
    "oldfieldtype": "Select",
@@ -129,6 +162,7 @@
    "search_index": 1
   },
   {
+   "default": "#1ee0ac",
    "fieldname": "color",
    "fieldtype": "Color",
    "label": "Color"
@@ -150,9 +184,15 @@
    "label": "Timeline"
   },
   {
+   "calendar_start_date": 1,
    "fieldname": "exp_start_date",
    "fieldtype": "Date",
-   "label": "Expected Start Date",
+   "in_edit": 1,
+   "in_list_compact": 1,
+   "in_preview": 1,
+   "in_view": 1,
+   "kanban_date": 1,
+   "label": "Deadline",
    "oldfieldname": "exp_start_date",
    "oldfieldtype": "Date"
   },
@@ -193,7 +233,6 @@
    "default": "0",
    "fieldname": "is_milestone",
    "fieldtype": "Check",
-   "in_list_view": 1,
    "label": "Is Milestone"
   },
   {
@@ -203,8 +242,14 @@
    "oldfieldtype": "Section Break"
   },
   {
+   "calendar_description": 1,
    "fieldname": "description",
    "fieldtype": "Text Editor",
+   "in_edit": 1,
+   "in_list_compact": 1,
+   "in_preview": 1,
+   "in_view": 1,
+   "kanban_description": 1,
    "label": "Task Description",
    "oldfieldname": "description",
    "oldfieldtype": "Text Editor",
@@ -221,6 +266,7 @@
    "fieldname": "depends_on",
    "fieldtype": "Table",
    "label": "Dependent Tasks",
+   "multiselect": "Task",
    "options": "Task Depends On"
   },
   {
@@ -323,7 +369,9 @@
   {
    "fetch_from": "project.company",
    "fieldname": "company",
-   "fieldtype": "Link",
+   "fieldtype": "Read Only",
+   "in_filter": 1,
+   "in_standard_filter": 1,
    "label": "Company",
    "options": "Company",
    "remember_last_selected_value": 1
@@ -382,14 +430,56 @@
    "fieldtype": "Date",
    "label": "Completed On",
    "mandatory_depends_on": "eval: doc.status == \"Completed\""
+  },
+  {
+   "fieldname": "details_heading",
+   "fieldtype": "Heading",
+   "in_edit": 1,
+   "in_list_compact": 1,
+   "in_view": 1,
+   "label": "Details"
+  },
+  {
+   "description": "Tab",
+   "fieldname": "details",
+   "fieldtype": "Section Break",
+   "label": "Details",
+   "options": "Tab"
+  },
+  {
+   "alias": "users",
+   "enable_actions": 1,
+   "fieldname": "users",
+   "fieldtype": "Table",
+   "in_edit": 1,
+   "in_list_compact": 1,
+   "in_preview": 1,
+   "in_view": 1,
+   "label": "Users",
+   "multiselect": "User",
+   "multiselect_id": "full_name",
+   "multiselect_key": "user",
+   "options": "Task User"
+  },
+  {
+   "description": "Tab",
+   "fieldname": "users_section",
+   "fieldtype": "Section Break",
+   "label": "Users"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
   }
  ],
+ "has_kanban": 1,
  "icon": "fa fa-check",
  "idx": 1,
  "is_tree": 1,
  "links": [],
  "max_attachments": 5,
- "modified": "2022-06-23 16:58:47.005241",
+ "modified": "2023-12-26 21:17:00.323428",
  "modified_by": "Administrator",
  "module": "Projects",
  "name": "Task",
